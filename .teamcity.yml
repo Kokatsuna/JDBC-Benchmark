@@ -1,0 +1,50 @@
+name: Andrey - reproduce TCP-948
+jobs:
+  Job1:
+    name: J
+    steps:
+      - type: script
+        script-content: echo "test" >> test-a.txt
+    runs-on: Linux-Small
+    files-publication:
+      - '*'
+  Job2:
+    name: Job B
+    runs-on: Linux-Small
+    steps:
+      - type: script
+        script-content: echo "test" >> test-b.txt
+    files-publication:
+      - '*'
+    allow-reuse: false
+  JobC:
+    name: Job C
+    runs-on: Linux-Small
+    steps:
+      - type: script
+        script-content: ls
+    dependencies:
+      - Job2:
+          files:
+            - '*'
+      - JobB2:
+          files:
+            - '*'
+    allow-reuse: false
+  JobB2:
+    name: Job B.2
+    runs-on: Linux-Small
+    steps:
+      - type: script
+        script-content: echo "test" >> test-b-2.txt
+    files-publication:
+      - '*'
+    allow-reuse: false
+  Job1_2:
+    name: Job
+    runs-on: Linux-Small
+    steps:
+      - type: script
+        script-content: echo "test" >> test-no-name.txt
+    files-publication:
+      - '*'
