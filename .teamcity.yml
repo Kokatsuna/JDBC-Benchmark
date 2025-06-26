@@ -4,12 +4,10 @@ jobs:
     steps:
       - type: script
         script-content: echo "test" >> test-a.txt
-    runs-on: Linux-Small
     files-publication:
       - '*'
   Job2:
     name: Job B
-    runs-on: Linux-Small
     steps:
       - type: script
         script-content: echo "test" >> test-b.txt
@@ -18,7 +16,6 @@ jobs:
     allow-reuse: false
   JobC:
     name: Job C
-    runs-on: Linux-Small
     steps:
       - type: script
         script-content: ls
@@ -32,7 +29,6 @@ jobs:
     allow-reuse: false
   JobB2:
     name: Job B.2
-    runs-on: Linux-Small
     steps:
       - type: script
         script-content: echo "test" >> test-b-2.txt
@@ -41,7 +37,6 @@ jobs:
     allow-reuse: false
   Job1_2:
     name: Job
-    runs-on: Linux-Small
     steps:
       - type: script
         script-content: echo "test" >> test-no-name.txt
